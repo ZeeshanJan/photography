@@ -8,7 +8,8 @@ function CtrlAdmin($scope, SnapService) {
     $scope.service = SnapService
 
     $scope.$watch('service.isLogged', function () {
-        console.log('hey, SnapService.isLogged has changed!', SnapService.isLogged);
+        // TODO add variables to watch list.
+//        console.log('hey, SnapService.isLogged has changed!', SnapService.isLogged);
     });
 
     $scope.login = function () {
@@ -26,14 +27,14 @@ function CtrlAdmin($scope, SnapService) {
 
     var albumPromise = SnapService.fetchAllAlbums();
     albumPromise.then(function (result) {
-        console.log("Results: ", result)
+//        console.log("Results: ", result)
         $scope.albums = result;
         $scope.selectAlbum = $scope.albums[0];
     });
 }
 
 /* Start File Upload Controller */
-function TestController ($scope, $fileUploader) {
+function TestController($scope, $fileUploader) {
     // Creates a uploader
     var uploader = $scope.uploader = $fileUploader.create({
         scope: $scope,
@@ -52,43 +53,47 @@ function TestController ($scope, $fileUploader) {
     // REGISTER HANDLERS
 
     uploader.bind('afteraddingfile', function (event, item) {
-        console.info('After adding a file', item);
+//        console.info('After adding a file', item);
     });
 
     uploader.bind('afteraddingall', function (event, items) {
-        console.info('After adding all files', items);
+//        console.info('After adding all files', items);
     });
 
     uploader.bind('beforeupload', function (event, item) {
-        console.info('Before upload', item);
+//        console.info('Before upload', item);
     });
 
     uploader.bind('progress', function (event, item, progress) {
-        console.info('Progress: ' + progress, item);
+//        console.info('Progress: ' + progress, item);
     });
 
     uploader.bind('success', function (event, xhr, item, response) {
-        console.info('Success', xhr, item, response);
+//        console.info('Success', xhr, item, response);
     });
 
     uploader.bind('cancel', function (event, xhr, item) {
-        console.info('Cancel', xhr, item);
+//        console.info('Cancel', xhr, item);
     });
 
     uploader.bind('error', function (event, xhr, item, response) {
-        console.info('Error', xhr, item, response);
+//        console.info('Error', xhr, item, response);
     });
 
     uploader.bind('complete', function (event, xhr, item, response) {
-        console.info('Complete', xhr, item, response);
+//        console.info('Complete', xhr, item, response);
     });
 
     uploader.bind('progressall', function (event, progress) {
-        console.info('Total progress: ' + progress);
+//        console.info('Total progress: ' + progress);
     });
 
     uploader.bind('completeall', function (event, items) {
-        console.info('Complete all', items);
+//        console.info('Complete all', items);
     });
+
+    $scope.openSnapBrowse = function () {
+        document.getElementById('snapBrowse').click();
+    }
 }
 /* End - File Upload Controller */

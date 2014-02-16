@@ -34,7 +34,7 @@
 
                     <div class="col-md-3">
                         <!-- 2. ng-file-select | ng-file-select="options" -->
-                        <input ng-file-select type="file" class="btn btn-success btn-s"/>
+
 
                     </div>
 
@@ -102,6 +102,10 @@
                                      ng-style="{ 'width': uploader.progress + '%' }"></div>
                             </div>
                             </p>
+                            <input ng-file-select id="snapBrowse" type="file" style="visibility: hidden"/>
+                            <button type="button" class="btn btn-success btn-s" ng-click="openSnapBrowse()">
+                                <span class="glyphicon glyphicon-file"></span> Browse
+                            </button>
                             <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()"
                                     ng-disabled="!uploader.getNotUploadedItems().length">
                                 <span class="glyphicon glyphicon-upload"></span> Upload all
