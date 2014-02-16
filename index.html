@@ -1,0 +1,39 @@
+<html ng-app="myApp">
+<head>
+    <title>My Testing Web</title>
+</head>
+<body>
+
+<div ng-controller="CtrlSnapList">
+
+    <ul ng-repeat="snap in snapsList">
+        <li>
+            Title: <strong>{{snap.title}}</strong><br/>
+            Date Taken: <strong>{{snap.dateTaken}}</strong><br/>
+            Place Taken: <strong>{{snap.placeTaken}}</strong><br/>
+            Local Path: <strong>{{snap.localPath}}</strong><br/>
+            Description: <strong>{{snap.description}}</strong><br/>
+            Album: <strong>{{snap.albumDetails.title}}</strong>
+        </li>
+    </ul>
+
+</div>
+<a href="admin">Admin Panel</a>
+<!--
+<script src="js/jquery-2.0.2.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+-->
+<script src="angular/angular.js"></script>
+<script src="angular/angular-route.js"></script>
+<script src="js/service.js"></script>
+<script src="js/controllers.js"></script>
+
+<script src="js/fileup.js"></script>
+<!--<script src="js/directives.js"></script>-->
+<script src="js/angular-file-upload.js"></script>
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
+
+</body>
+</html>
