@@ -1,30 +1,55 @@
-<html ng-app="myApp">
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Testing Web</title>
 </head>
 <body>
 
-<div ng-controller="CtrlSnapList">
+<div class="container-fluid" id="content" ng-controller="CtrlSnapList">
+    <!--
+            <ul ng-repeat="snap in snapsList">
+                <li>
+                    ID: <strong>{{snap.snap_id}}</strong><br/>
+                    Album: <strong>{{selectedAlbum(snap.album_id).album_name}}</strong><br/>
+                    Path: <strong>{{snap.snap_path}}</strong><br/>
+                    Title: <strong>{{snap.snap_title}}</strong><br/>
+                    <img src="{{snap.snap_path}}" width="100px" height="100px"/>
+                    <br/><br/>
+                </li>
+            </ul>-->
 
-    <ul ng-repeat="snap in snapsList">
-        <li>
-            Title: <strong>{{snap.title}}</strong><br/>
-            Date Taken: <strong>{{snap.dateTaken}}</strong><br/>
-            Place Taken: <strong>{{snap.placeTaken}}</strong><br/>
-            Local Path: <strong>{{snap.localPath}}</strong><br/>
-            Description: <strong>{{snap.description}}</strong><br/>
-            Album: <strong>{{snap.albumDetails.title}}</strong>
-        </li>
-    </ul>
+    <!-- Caraousel Starts -->
+    <carousel interval="myInterval">
+        <slide ng-repeat="snap in snapsList | filter:snapFilter" active="snap.active">
+            <img ng-src="{{snap.snap_path}}" style="margin:auto;">
 
+            <div class="carousel-caption">
+                <h4>Snap: {{snap.snap_title}}</h4>
+
+                <p>{{snap.snap_path}}</p>
+            </div>
+        </slide>
+    </carousel>
+    <!-- Caraousel Ends -->
+    <tabset>
+        <tab ng-repeat="album in albumList " ng-click="albumClicked(album)" heading="{{album.album_name}}" active="album.active" disabled="album.disabled">
+            {{album.album_name}}
+        </tab>
+    </tabset>
 </div>
-<a href="admin">Admin Panel</a>
-<!--
+
+<!-- <a href="admin">Admin Panel</a> -->
+
 <script src="js/jquery-2.0.2.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
--->
+
 <script src="angular/angular.js"></script>
 <script src="angular/angular-route.js"></script>
+<script src="angular/ui-bootstrap-tpls-0.10.0.min.js"></script>
+
 <script src="js/service.js"></script>
 <script src="js/controllers.js"></script>
 
@@ -32,8 +57,16 @@
 <script src="js/directives.js"></script>
 <script src="js/angular-file-upload.js"></script>
 
+<script type="text/javascript" src="js/jquery.easing.min.js"></script>
+
+
+<script type='text/javascript'>
+
+</script>
+
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
+<!-- <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css"> -->
+<link rel="stylesheet" href="css/styles.css">
 
 </body>
 </html>

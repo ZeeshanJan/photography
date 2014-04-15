@@ -10,7 +10,7 @@ $username = 'root';
 $password = 'root';
 
 try {
-    $dbh = new PDO("mysql:host=$hostname;dbname=mytestdb", $username, $password);
+    $dbh = new PDO("mysql:host=$hostname;dbname=photography", $username, $password);
     /*** echo a message saying we have connected ***/
     //echo 'Connected to database';
     }

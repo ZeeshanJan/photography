@@ -2,26 +2,11 @@
 
 function getAllSnaps() {
     global $dbh;
-    $sql = "SELECT * FROM snap";
+    $sql = "SELECT * FROM tblsnap";
     $stmt = $dbh->query($sql);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    for($i=0; $i<count($result); $i++) {
-        $albumDetail = getAlbumDetails($result[$i]['album_ID']);
-        $result[$i]['albumDetails'] = $albumDetail;
-    }
-    echo json_encode($result);
-}
 
-function getAlbumDetails($id) {
-     global $dbh;
-     $stmt = $dbh->prepare("SELECT * FROM album WHERE ID = :album_id");
-     $stmt->bindParam(':album_id', $id, PDO::PARAM_INT);
-//   $stmt->bindParam(':animal_name', $animal_name, PDO::PARAM_STR, 5);
-       /*** execute the prepared statement ***/
-     $stmt->execute();
-     //$result = $stmt->fetchAll();
-     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-     return $result;
+    echo json_encode($result);
 }
 
 function loginUser($us) {
@@ -45,7 +30,7 @@ function loginUser($us) {
 
 function getAllAlbums() {
      global $dbh;
-     $stmt = $dbh->prepare("SELECT * FROM album");
+     $stmt = $dbh->prepare("SELECT * FROM tblalbum");
      $stmt->execute();
      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
      echo json_encode($result);

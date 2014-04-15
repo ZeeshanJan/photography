@@ -11,10 +11,6 @@
     border: dotted 3px green;
 }
 
-html, body {
-    height: 100%;
-}
-
 canvas {
     background-color: #f3f3f3;
     -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
@@ -24,3 +20,6 @@ canvas {
     height: 100px;
     margin: 6px 0 0 6px;
 }
+html,body{height:100%;}
+.carousel,.item,.active{height:100%;}
+.carousel-inner{height:100%;}

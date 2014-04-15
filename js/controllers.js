@@ -1,8 +1,36 @@
 function CtrlSnapList($scope, SnapService) {
+    $scope.myInterval = 3000;
     var snapsListPromise = SnapService.getAllSnaps();
     snapsListPromise.then(function (result) {
         $scope.snapsList = result;
+        SnapService.snapsList = result;
     });
+
+    var albumListPromise = SnapService.getAllAlbums();
+    albumListPromise.then(function (result) {
+        $scope.albumList = result;
+        SnapService.albumList = result;
+    });
+
+    $scope.selectedAlbum = function (id) {
+        return SnapService.getAlbum(id);
+    }
+
+    $scope.albumClicked = function (album) {
+        SnapService.clickedAlbum = album
+    }
+    $scope.snapFilter = function (snap) {
+        if (!SnapService.clickedAlbum) {
+            return true;
+        }
+        if (snap.album_id === SnapService.clickedAlbum.album_id) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 }
 function CtrlAdmin($scope, SnapService) {
     $scope.service = SnapService
@@ -97,3 +125,9 @@ function TestController($scope, $fileUploader) {
     }
 }
 /* End - File Upload Controller */
+
+
+/* Carousel Starts */
+
+
+/* Carousel Ends */

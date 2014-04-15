@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'angularFileUpload' ]);
+var myApp = angular.module('myApp', ['ngRoute', 'angularFileUpload', 'ui.bootstrap']);
 
 myApp.config(['$routeProvider', '$locationProvider', function (routeProvider, locationProvider) {
     routeProvider.when('/admin', {
@@ -31,6 +31,10 @@ myApp.factory('SnapService', function ($http, $q) {
 
     SnapService.user = '';
     SnapService.isLogged = false;
+
+    var snapList;
+    var albumList;
+    var clickedAlbum;
 
     SnapService.getAllSnaps = function () {
         var deferred = $q.defer();
@@ -81,7 +85,7 @@ myApp.factory('SnapService', function ($http, $q) {
         return false;
     }
 
-    SnapService.fetchAllAlbums = function () {
+    SnapService.getAllAlbums = function () {
         var deferred = $q.defer();
         var url = 'phpinc/getRes.php?req=getallalbums';
         var status = [];
@@ -99,22 +103,32 @@ myApp.factory('SnapService', function ($http, $q) {
         return deferred.promise;
     }
 
+    SnapService.getAlbum = function (snap_id) {
+        var albumVar = null;
+        angular.forEach(SnapService.albumList, function (album, index) {
+            if (album.album_id == snap_id) {
+                albumVar = album;
+            }
+        });
+        return albumVar;
+    }
+
     return SnapService;
 });
 /*
 
-myApp.run(function ($rootScope, SnapService) {
-    var lastDigestRun = new Date();
-    $rootScope.$watch(function detectIdle() {
-        var now = new Date();
-        if (now - lastDigestRun > 10 * 60 * 60) {
-            // logout here, like delete cookie, navigate to login ...
-            SnapService.logoutUser()
-        }
-        lastDigestRun = now;
-    });
+ myApp.run(function ($rootScope, SnapService) {
+ var lastDigestRun = new Date();
+ $rootScope.$watch(function detectIdle() {
+ var now = new Date();
+ if (now - lastDigestRun > 10 * 60 * 60) {
+ // logout here, like delete cookie, navigate to login ...
+ SnapService.logoutUser()
+ }
+ lastDigestRun = now;
+ });
 
-});
+ });
 
-*/
+ */
 
